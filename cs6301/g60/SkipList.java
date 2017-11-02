@@ -93,7 +93,7 @@ public class SkipList<T extends Comparable<? super T>> {
     }
     
 
-    // Return element at index n of list.  First element is at index 0.
+    // Find an element in the skiplist
     public SkipListEntry<T>[] find(T x) {
     	SkipListEntry<T> p = head;
     	prev = new SkipListEntry[maxLevel+1];
