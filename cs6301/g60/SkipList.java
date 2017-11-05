@@ -194,7 +194,18 @@ public class SkipList<T extends Comparable<? super T>> {
     
     // Return element at index n of list.  First element is at index 0.
     public T get(int n) {
-	return null;
+    	if(n >= size()) {
+    		return null;
+    	}else{
+    		Iterator<T> itr = this.iterator();
+    		while(n > 0) {
+    			n--;
+    			if(itr.hasNext()) {
+    				itr.next();
+    			}
+    		}
+    		return itr.next();
+    	}
     }
     
     // Reorganize the elements of the list into a perfect skip list
@@ -202,9 +213,26 @@ public class SkipList<T extends Comparable<? super T>> {
 	
     }
     
-    // Iterate through the elements of list in sorted order
+     // Iterate through the elements of list in sorted order
     public Iterator<T> iterator() {
-	return null;
+    	Iterator<T> itr = new Iterator() {
+    		SkipListEntry<T> entry = head;
+			@Override
+			public boolean hasNext() {
+				if(isEmpty()){
+					return false;
+				}
+				return !entry.next[0].equals(tail);
+			}
+			@Override
+			public Object next() {
+				System.out.println("next() called");
+				entry = entry.next[0];
+				return entry.element;
+			}
+    		
+    	};
+    	return itr;
     }
 
 }
